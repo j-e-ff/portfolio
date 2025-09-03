@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/umedia/:path*",
+      "destination": "https://umedia.vercel.app/:path*"
+    }
+  ]
+}
