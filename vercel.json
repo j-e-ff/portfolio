@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/umedia/:path*",
-      "destination": "https://umedia.vercel.app/:path*"
+      "destination": "https://umedia-ten.vercel.app/:path*"
     }
   ]
 }
