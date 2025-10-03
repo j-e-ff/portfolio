@@ -1,9 +1,47 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
+import { useState, useEffect } from "react";
+
+const images = [
+  "/twice-1.svg",
+  "/badminton.svg",
+  "/final-fantasy.png",
+  "/Coca-Cola.svg",
+  "/pepsi.svg",
+  "/samsung.svg",
+  "/LE-SSERAFIM.svg",
+  "/asics.svg",
+  "/Dragonball.svg",
+  "/apex-legends.png",
+  "/running-man.svg",
+  "/subaru.png",
+];
 
 export default function Home() {
+  // Initialize with first 6 images
+  const [imageStates, setImageStates] = useState([
+    images[0],
+    images[1],
+    images[2],
+    images[3],
+    images[4],
+    images[5],
+  ]);
+
+  // Preload images on component mount
+  useEffect(() => {
+    images.forEach((imageSrc) => {
+      const img = new window.Image();
+      img.src = imageSrc;
+    });
+  }, []);
+
+  const getRandomImage = () =>
+    images[Math.floor(Math.random() * images.length)];
+
   return (
-    <div className="font-sans grid grid-rows-[40px_1fr_20px] items-center justify-items-center min-h-screen">
+    <div className="font-sans grid grid-rows-[40px_1fr_20px] items-center justify-center min-h-screen">
       {/* Navbar at top of page */}
       <header className="hidden sm:flex sm:flex-row gap-4 backdrop-blur-3xl fixed top-0 justify-center z-50  h-10 w-full ">
         <button className="brightness-50 hover:brightness-100">Home </button>
@@ -32,55 +70,70 @@ export default function Home() {
           </div>
 
           <Image
-            className="dark:invert"
-            src="/next.svg"
+            className="z-10"
+            src="/me.jpg"
             alt="Next.js logo"
-            width={180}
+            width={280}
             height={38}
             priority
           />
 
-          <div className="w-20 h-20 bg-red-500 animate-fall"></div>
-
-          {/* Falling image */}
-          <div className="absolute top-0 left-10 w-[50px] h-[38px] animate-">
-            <Image
-              src="/daisyUI-rotating.svg"
-              alt="Daisy UI Logo"
-              width={50}
-              height={38}
-              className="w-full h-full"
-              priority
-            />
-          </div>
+          {/* Falling images */}
+          {imageStates.map((imageSrc, index) => (
+            <div
+              key={index}
+              className="absolute top-0 animate-fall"
+              style={{
+                left: `${10 + index * 15}vw`,
+                animationDelay: `${index * 1.5}s`,
+              }}
+              onAnimationIteration={() => {
+                setImageStates((prev) => {
+                  const newStates = [...prev];
+                  newStates[index] = getRandomImage();
+                  return newStates;
+                });
+              }}
+            >
+              <Image
+                src={imageSrc}
+                alt="falling image"
+                width={40}
+                height={38}
+                className=""
+                priority={index < 3}
+              />
+            </div>
+          ))}
         </div>
 
         {/* Projects Section */}
-        <div className="w-full flex flex-col items-center gap-20 min-h-screen">
+        <div className="w-full flex flex-col items-center gap-20 min-h-screen justify-center">
           <div className="w-full flex flex-col justify-center items-center gap-6">
-            <h1 className="text-3xl font-bold">Projects</h1>
+            <p className="text-2xl font-bold">Projects</p>
             <p>Current projects deployed</p>
           </div>
           {/* Cards displaying the projects */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 gap-y-12 w-full ">
-            <Link
-              href="https://umedia.rodasjeffrey.com"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              <div className="group relative bg-[url(/umedia-home.png)] bg-cover mx-auto flex w-100 h-80 sm:w-85 sm:h-80 md:w-100 md:h-90 lg:w-120 lg:h-100 xl:w-120 gap-x-4 rounded-xl justify-center">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 gap-y-12 w-full">
+            <div className="group relative bg-[url(/umedia-home.png)] bg-cover mx-auto flex w-100 h-80 sm:w-85 sm:h-80 md:w-100 md:h-90 lg:w-120 lg:h-100 xl:w-120 gap-x-4 rounded-xl justify-center items-center">
+              <Link
+                href="https://umedia.rodasjeffrey.com"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
                 <div className="absolute inset-0 hover:bg-black/80 text-center flex flex-col gap-15 p-6">
-                  <h1 className="opacity-0 group-hover:opacity-100 brightness-200 text-xl ">
+                  <p className="opacity-0 group-hover:opacity-100 brightness-200 text-xl ">
                     Umedia
-                  </h1>
+                  </p>
                   <section className="flex flex-col gap-15 text-start">
-                    <p className="opacity-0 group-hover:opacity-100 brightness-200">
+                    <p className="opacity-0 group-hover:opacity-100 brightness-200 px-">
                       Social media website that combines features from Reddit
                       and X, supporting image and text-based posts, user
                       messaging, following users, and forum/topic subscription.
                     </p>
-                    {/* icons */}
-                    <div className="opacity-0 group-hover:opacity-100 flex flex-row gap-4">
+                  </section>
+                  {/* icons */}
+                    <div className="opacity-0 group-hover:opacity-100 flex flex-row gap-4 justify-center">
                       <Image
                         className=""
                         src="/react-2.svg"
@@ -130,10 +183,9 @@ export default function Home() {
                         priority
                       />
                     </div>
-                  </section>
                 </div>
-              </div>
-            </Link>
+              </Link>
+            </div>
 
             <Link
               href="https://cinemasite.rodasjeffrey.com"
@@ -143,52 +195,51 @@ export default function Home() {
               <div className="group relative bg-[url(/cinemasite.png)] bg-cover mx-auto flex w-100 h-80 sm:w-85 sm:h-80 md:w-100 md:h-90 lg:w-120 lg:h-100  gap-x-4 rounded-xl justify-center ">
                 <div className="absolute inset-0 hover:bg-black/80 text-center flex flex-col gap-15 p-6">
                   <div className="gap-15 flex flex-col">
-                    <h1 className="opacity-0 group-hover:opacity-100 brightness-200 text-xl">
+                    <p className="opacity-0 group-hover:opacity-100 brightness-200 text-xl">
                       CinemaSite
-                    </h1>
-                    <section className="flex flex-col gap-15 text-start">
+                    </p>
+                    <section className="flex flex-col gap-15 text-start ">
                       <p className="opacity-0 group-hover:opacity-100 brightness-200">
                         Movie database (and tv-shows) site where users can
                         search for content, allowing them to add to favorites
                         list or watch later list. Uses The Movie Database API
                         and JustWatch for information.
                       </p>
-                      {/* icons */}
-                      <div className="opacity-0 group-hover:opacity-100 flex flex-row gap-4">
-                        <Image
-                          className=""
-                          src="/react-2.svg"
-                          alt="react logo"
-                          width={25}
-                          height={38}
-                          priority
-                        />
-                        <Image
-                          className=""
-                          src="/vitejs.svg"
-                          alt="vite logo"
-                          width={25}
-                          height={38}
-                          priority
-                        />
-                        <Image
-                          className=""
-                          src="/firebase-1.svg"
-                          alt="firebase logo"
-                          width={20}
-                          height={38}
-                          priority
-                        />
-                        <Image
-                          className=""
-                          src="/javascript-1.svg"
-                          alt="javascript logo"
-                          width={23}
-                          height={38}
-                          priority
-                        />
-                      </div>
                     </section>
+                    {/* icons */}
+                    <div className="opacity-0 group-hover:opacity-100 flex flex-row gap-3 justify-center">
+                      <Image
+                        src="/react-2.svg"
+                        alt="react logo"
+                        width={25}
+                        height={38}
+                        priority
+                      />
+                      <Image
+                        className=""
+                        src="/vitejs.svg"
+                        alt="vite logo"
+                        width={25}
+                        height={38}
+                        priority
+                      />
+                      <Image
+                        className=""
+                        src="/firebase-1.svg"
+                        alt="firebase logo"
+                        width={20}
+                        height={38}
+                        priority
+                      />
+                      <Image
+                        className=""
+                        src="/javascript-1.svg"
+                        alt="javascript logo"
+                        width={23}
+                        height={38}
+                        priority
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -201,17 +252,17 @@ export default function Home() {
             >
               <div className="group relative bg-[url(/weather-app.png)] bg-cover mx-auto flex w-100 h-80 sm:w-85 sm:h-80 md:w-100 md:h-90 lg:w-120 lg:h-100 gap-x-4 rounded-xl justify-center">
                 <div className="absolute inset-0 hover:bg-black/80 text-center flex flex-col gap-15 p-6">
-                  <div className="gap-15 flex flex-col ">
-                    <h1 className="opacity-0 group-hover:opacity-100 brightness-200 text-xl">
+                  <div className="gap-15 flex flex-col">
+                    <p className="opacity-0 group-hover:opacity-100 brightness-200 text-xl">
                       Weather App
-                    </h1>
-                    <p className="text-start opacity-0 group-hover:opacity-100 brightness-200">
+                    </p>
+                    <p className="text-start opacity-0 group-hover:opacity-100 brightness-200 ">
                       A weather app that takes in a city name to provide weather
                       information from The Weather API. User location can also
                       be used if allowed.
                     </p>
                     {/* icons */}
-                    <div className="opacity-0 group-hover:opacity-100 flex flex-row gap-4">
+                    <div className="opacity-0 group-hover:opacity-100 flex flex-row gap-4 justify-center">
                       <Image
                         className=""
                         src="/react-2.svg"
@@ -237,7 +288,7 @@ export default function Home() {
         </div>
         {/* Certifications Section */}
         <div className="w-full flex flex-col items-center gap-20 min-h-screen justify-center">
-          <h1 className="text-3xl font-bold">Certifications</h1>
+          <p className="text-3xl font-bold">Certifications</p>
           {/* Google Certification */}
           <div className="flex flex-row items-center gap-10 lg:gap-15 sm:w-135">
             <Link
@@ -308,8 +359,8 @@ export default function Home() {
           </div>
         </div>
         {/* Education Section */}
-        <div className="w-full flex flex-col items-center gap-20 h-300">
-          <h1 className="text-3xl font-bold">Education</h1>
+        <div className="w-full flex flex-col items-center gap-20 h-100 sm:h-200">
+          <p className="text-3xl font-bold">Education</p>
           <Image
             className=""
             src="/CPP_Horizontal_2C_Green_RGB-700px.png"
