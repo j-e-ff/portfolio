@@ -109,21 +109,6 @@ export default function Home() {
     }
   };
 
-  function openEmailClient(
-    recipient: string,
-    subject: string = " ",
-    body: string = " "
-  ): void {
-    const encodedSubject = encodeURIComponent(subject);
-    const encodedBody = encodeURIComponent(body);
-
-    // construct mailto URL
-    const mailtoUrl = `mailto:${recipient}?subject=${encodedSubject}&body=${encodedBody}`;
-
-    // oepn window
-    window.open(mailtoUrl, "_blank");
-  }
-
   return (
     <div className="font-sans grid grid-rows-1 items-center justify-center min-h-screen">
       {/* Navbar at top of page */}
@@ -156,24 +141,10 @@ export default function Home() {
 
       <header className="sm:hidden flex w-full fixed top-6 right-4 justify-end z-50">
         <DropDown scrollToSection={scrollToSection}></DropDown>
-
-        {/* <button className="hover:cursor-pointer rounded-sm px-1 flex items-center">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            fill=""
-            className="bi bi-menu-button-wide"
-            viewBox="0 0 16 16"
-          >
-            <path d="M0 1.5A1.5 1.5 0 0 1 1.5 0h13A1.5 1.5 0 0 1 16 1.5v2A1.5 1.5 0 0 1 14.5 5h-13A1.5 1.5 0 0 1 0 3.5zM1.5 1a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5z" />
-            <path d="M2 2.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m10.823.323-.396-.396A.25.25 0 0 1 12.604 2h.792a.25.25 0 0 1 .177.427l-.396.396a.25.25 0 0 1-.354 0M0 8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm1 3v2a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2zm14-1V8a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v2zM2 8.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0 4a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5" />
-          </svg>
-        </button> */}
       </header>
 
       {/* Links to GitHub, LinkedIn, email; Displayed on side of page (bottom left)*/}
-      <nav className="opacity-0 sm:opacity-100 flex flex-col fixed bottom-12 left-8 gap-4">
+      <nav className="opacity-0 sm:opacity-100 flex flex-col fixed bottom-12 left-8 sm:left-2 md:left-4 lg:left-6 xl:left-8 gap-4">
         {/* GITHUB */}
         <div>
           <Link
@@ -291,55 +262,53 @@ export default function Home() {
         </div>
       </nav>
 
-      <main className="flex flex-col gap-[32px] overflow-y-auto w-full">
+      <main className="flex flex-col gap-[32px] overflow-y-auto w-full md:pl-4 lg:pl-12 ">
         {/* About Me Section */}
-        <div
-          id="about"
-          className="w-full min-h-screen flex flex-col gap-8 sm:flex-row justify-center items-center sm:gap-40 relative overflow-hidden"
-        >
-          <div className="text">
-            <p className="text-3xl font-bold">Software Engineer</p>
-            <p className="text-2xl font-semibold">Front-End</p>
-          </div>
-
-          <Image
-            className="z-10"
-            src="/me.jpg"
-            alt="Me"
-            width={320}
-            height={38}
-            priority
-          />
-
-          {/* Falling images */}
-          {imageStates.map((imageSrc, index) => (
-            <div
-              key={index}
-              className={`absolute top-0 animate-fall ${
-                isInverted(imageSrc) ? "dark:invert" : ""
-              }`}
-              style={{
-                left: `${10 + index * 15}vw`,
-                animationDelay: `${index * 1.5}s`,
-              }}
-              onAnimationIteration={() => {
-                setImageStates((prev) => {
-                  const newStates = [...prev];
-                  newStates[index] = getRandomImage();
-                  return newStates;
-                });
-              }}
-            >
-              <Image
-                src={imageSrc}
-                alt="falling image"
-                width={40}
-                height={38}
-                className=""
-                priority={index < 3}
-              />
+        <div id="about" className="">
+          <div className="w-full min-h-screen flex flex-col gap-8 sm:flex-row justify-center items-center sm:gap-10 md:gap-30 relative overflow-hidden">
+            <div className="text">
+              <p className="text-3xl font-bold w-full wrap-anywhere text-center">Software Developer</p>
+              <p className="text-2xl font-semibold w-full text-center">Front-End</p>
             </div>
-          ))}
+            <Image
+              className="z-10 md:w-80 lg:w-90"
+              src="/me.jpg"
+              alt="Me"
+              width={300}
+              height={38}
+              priority
+              quality={100}
+            />
+            {/* Falling images */}
+            {imageStates.map((imageSrc, index) => (
+              <div
+                key={index}
+                className={`absolute top-0 animate-fall ${
+                  isInverted(imageSrc) ? "dark:invert" : ""
+                }`}
+                style={{
+                  left: `${10 + index * 15}vw`,
+                  animationDelay: `${index * 1.5}s`,
+                }}
+                onAnimationIteration={() => {
+                  setImageStates((prev) => {
+                    const newStates = [...prev];
+                    newStates[index] = getRandomImage();
+                    return newStates;
+                  });
+                }}
+              >
+                <Image
+                  src={imageSrc}
+                  alt="falling image"
+                  width={40}
+                  height={38}
+                  className=""
+                  priority={index < 3}
+                />
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Projects Section */}
@@ -351,28 +320,28 @@ export default function Home() {
             <p className="text-2xl font-bold sticky">Projects</p>
             <p>Current projects deployed</p>
           </div>
-          {/* Cards displaying the projects */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 sm:gap-4 gap-y-12 sm:gap-y-0 w-full sm:h-220">
+          {/* Project Cards*/}
+          <div className="grid grid-cols-1 md:grid-cols-2 sm:gap-4 gap-y-12 sm:gap-y-6 w-full sm:h-full">
             {/* umedia */}
-            <div className="observe group relative bg-[url(/umedia-home.png)] bg-cover mx-auto flex w-100 h-80 sm:w-85 sm:h-80 md:w-100 md:h-90 lg:w-120 lg:h-100 xl:w-120 sm:gap-x-4 rounded-xl ">
+            <div className="observe group relative bg-[url(/umedia-home.png)] bg-cover mx-auto flex w-100 h-80 sm:w-115 sm:h-105 md:w-88 md:h-80 lg:w-120 lg:h-100 xl:w-120 sm:gap-x-4 rounded-xl">
               <Link
                 href="https://umedia.rodasjeffrey.com"
                 rel="noopener noreferrer"
                 target="_blank"
               >
-                <div className="absolute inset-0 hover:bg-black/80 text-center flex flex-col gap-10 rounded-xl items-center ">
-                  <p className="text-white opacity-0 group-hover:opacity-100 brightness-200 text-xl pt-8">
+                <div className="absolute inset-0 bg-black/80  sm:bg-transparent sm:hover:bg-black/80 text-center flex flex-col gap-10 rounded-xl items-center ">
+                  <p className="text-white opacity-100 sm:opacity-0 sm:group-hover:opacity-100 brightness-200 text-xl pt-8">
                     Umedia
                   </p>
-                  <div className="textbox flex flex-col text-center sm:w-85 md:w-95">
-                    <p className="text-white opacity-0 group-hover:opacity-100 brightness-200 text-xs lg:text-lg">
+                  <div className="textbox flex flex-col text-center sm:w-100 md:w-80 lg:w-110">
+                    <p className="text-white opacity-100 sm:opacity-0 sm:group-hover:opacity-100 brightness-200 text-xs sm:text-base lg:text-lg">
                       Social media website that combines features from Reddit
                       and X, supporting image and text-based posts, user
                       messaging, following users, and forum/topic subscription.
                     </p>
                   </div>
                   {/* icons */}
-                  <div className="opacity-0 group-hover:opacity-100 flex flex-row gap-4 justify-center">
+                  <div className="opacity-100 sm:opacity-0 sm:group-hover:opacity-100 flex flex-row gap-4 justify-center">
                     <Image
                       className=""
                       src="/react-2.svg"
@@ -426,19 +395,19 @@ export default function Home() {
               </Link>
             </div>
             {/* cinemasite */}
-            <div className="observe group relative bg-[url(/cinemasite.png)] bg-cover mx-auto flex w-100 h-80 sm:w-85 sm:h-80 md:w-100 md:h-90 lg:w-120 lg:h-100  gap-x-4 rounded-xl ">
+            <div className="observe group relative bg-[url(/cinemasite.png)] bg-cover mx-auto flex w-100 h-80 sm:w-115 sm:h-105 md:w-88 md:h-80 lg:w-120 lg:h-100 xl:w-120 sm:gap-x-4 rounded-xl">
               <Link
                 href="https://cinemasite.rodasjeffrey.com"
                 rel="noopener noreferer"
                 target="_blank"
               >
-                <div className="absolute inset-0 hover:bg-black/80 text-center flex flex-col gap-15 p-6 rounded-xl">
+                <div className="absolute inset-0 bg-black/80 sm:bg-transparent sm:hover:bg-black/80 text-center flex flex-col gap-15 p-6 rounded-xl">
                   <div className="gap-10 flex flex-col items-center">
-                    <p className="text-white opacity-0 group-hover:opacity-100 brightness-200 text-xl mt-4">
+                    <p className="text-white opacity-100 sm:opacity-0 sm:group-hover:opacity-100 brightness-200 text-xl mt-4">
                       CinemaSite
                     </p>
-                    <div className="textbox flex flex-col text-center w-95">
-                      <p className="lg:text-lg text-white opacity-0 group-hover:opacity-100 brightness-200">
+                    <div className="textbox flex flex-col text-center sm:w-100 md:w-80 lg:w-110">
+                      <p className="text-white opacity-100 sm:opacity-0 sm:group-hover:opacity-100 brightness-200 text-xs sm:text-base lg:text-lg">
                         Movie database (and tv-shows) site where users can
                         search for content, allowing them to add to favorites
                         list or watch later list. Uses The Movie Database API
@@ -446,7 +415,7 @@ export default function Home() {
                       </p>
                     </div>
                     {/* icons */}
-                    <div className="opacity-0 group-hover:opacity-100 flex flex-row gap-3 justify-center">
+                    <div className="opacity-100 sm:opacity-0 sm:group-hover:opacity-100 flex flex-row gap-3 justify-center">
                       <Image
                         src="/react-2.svg"
                         alt="react logo"
@@ -484,24 +453,24 @@ export default function Home() {
               </Link>
             </div>
             {/* weather */}
-            <div className="observe group relative bg-[url(/weather-app.png)] bg-cover mx-auto flex w-100 h-80 sm:w-85 sm:h-80 md:w-100 md:h-90 lg:w-120 lg:h-100 gap-x-4 rounded-xl ">
+            <div className="observe group relative bg-[url(/weather-app.png)] bg-cover mx-auto flex w-100 h-80 sm:w-115 sm:h-105 md:w-88 md:h-80 lg:w-120 lg:h-100 xl:w-120 sm:gap-x-4 rounded-xl">
               <Link
                 href="https://weather.rodasjeffrey.com"
                 rel="noopener noreferer"
                 target="_blank"
               >
-                <div className="absolute inset-0 hover:bg-black/80 text-center flex flex-col gap-15 p-6 rounded-xl">
+                <div className="absolute inset-0 bg-black/80 sm:bg-transparent sm:hover:bg-black/80 text-center flex flex-col gap-15 p-6 rounded-xl">
                   <div className="gap-10 flex flex-col items-center">
-                    <p className="text-white opacity-0 group-hover:opacity-100 brightness-200 text-xl ">
+                    <p className="text-white opacity-100 sm:opacity-0 sm:group-hover:opacity-100 brightness-200 text-xl mt-4">
                       Weather App
                     </p>
-                    <p className="lg:text-lg text-white text-start opacity-0 group-hover:opacity-100 brightness-200 w-95">
+                    <p className="text-white opacity-100 sm:opacity-0 sm:group-hover:opacity-100 brightness-200 text-xs sm:text-base lg:text-lg">
                       A weather app that takes in a city name to provide weather
                       information from The Weather API. User location can also
                       be used if allowed.
                     </p>
                     {/* icons */}
-                    <div className="opacity-0 group-hover:opacity-100 flex flex-row gap-4 justify-center">
+                    <div className="opacity-100 sm:opacity-0 sm:group-hover:opacity-100 flex flex-row gap-3 justify-center">
                       <Image
                         className=""
                         src="/react-2.svg"
@@ -528,7 +497,7 @@ export default function Home() {
         {/* Certifications Section */}
         <div
           id="certifications"
-          className="w-full flex flex-col items-center gap-20 min-h-screen justify-center  pt-4"
+          className="w-full flex flex-col items-center gap-20 min-h-screen justify-center scroll-mb-12 pt-4"
         >
           <p className="text-3xl font-bold">Certifications</p>
           {/* Google Certification */}
@@ -603,7 +572,7 @@ export default function Home() {
         {/* Education Section */}
         <div
           id="education"
-          className="w-full flex flex-col items-center gap-20 h-100 sm:h-200 scroll-mt-12"
+          className="w-full flex flex-col items-center gap-20 h-[calc(100vh-7rem)] sm:h-200 scroll-mt-12"
         >
           <p className="text-3xl font-bold">Education</p>
           <Image
@@ -612,6 +581,7 @@ export default function Home() {
             alt="CPP logo"
             width={380}
             height={38}
+            quality={100}
             priority
           />
           <section className="flex flex-row gap-4">
@@ -625,23 +595,31 @@ export default function Home() {
             <p>Aug 2021 - May 2025</p>
           </section>
         </div>
+        {/* Contact */}
+        
       </main>
 
-      {/* <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
+      <footer className="sm:hidden row-start-3 flex gap-[24px] flex-wrap items-center justify-center p-10">
         <a
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
           href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-[30px] h-[30px] stroke-black dark:stroke-white hover:stroke-[#5FED83] transition-colors duration-300 cursor-pointer"
+          >
+            <path
+              fillRule="evenodd"
+              clipRule="evenodd"
+              d="M12 2C6.475 2 2 6.475 2 12C2 16.425 4.8625 20.1625 8.8375 21.4875C9.3375 21.575 9.525 21.275 9.525 21.0125C9.525 20.775 9.5125 19.9875 9.5125 19.15C7 19.6125 6.35 18.5375 6.15 17.975C6.0375 17.6875 5.55 16.8 5.125 16.5625C4.775 16.375 4.275 15.9125 5.1125 15.9C5.9 15.8875 6.4625 16.625 6.65 16.925C7.55 18.4375 8.9875 18.0125 9.5625 17.75C9.65 17.1 9.9125 16.6625 10.2 16.4125C7.975 16.1625 5.65 15.3 5.65 11.475C5.65 10.3875 6.0375 9.4875 6.675 8.7875C6.575 8.5375 6.225 7.5125 6.775 6.1375C6.775 6.1375 7.6125 5.875 9.525 7.1625C10.325 6.9375 11.175 6.825 12.025 6.825C12.875 6.825 13.725 6.9375 14.525 7.1625C16.4375 5.8625 17.275 6.1375 17.275 6.1375C17.825 7.5125 17.475 8.5375 17.375 8.7875C18.0125 9.4875 18.4 10.375 18.4 11.475C18.4 15.3125 16.0625 16.1625 13.8375 16.4125C14.2 16.725 14.5125 17.325 14.5125 18.2625C14.5125 19.6 14.5 20.675 14.5 21.0125C14.5 21.275 14.6875 21.5875 15.1875 21.4875C17.1727 20.8173 18.8977 19.5415 20.1198 17.8395C21.3419 16.1376 21.9995 14.0953 22 12C22 6.475 17.525 2 12 2Z"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
         </a>
         <a
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
@@ -650,13 +628,14 @@ export default function Home() {
           rel="noopener noreferrer"
         >
           <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
+            className="z-10 md:w-80 lg:w-90"
+            src="/linkedin-color.svg"
+            alt="Me"
+            width={30}
+            height={38}
+            priority
+            quality={100}
           />
-          Examples
         </a>
         <a
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
@@ -665,15 +644,17 @@ export default function Home() {
           rel="noopener noreferrer"
         >
           <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
+            className="z-10 md:w-80 lg:w-90"
+            src="/gmail-color.svg"
+            alt="Me"
+            width={30}
+            height={38}
+            priority
+            quality={100}
           />
-          Go to nextjs.org →
+
         </a>
-      </footer> */}
+      </footer>
     </div>
   );
 }

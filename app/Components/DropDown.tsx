@@ -66,6 +66,16 @@ const DropDown: React.FC<DropDownProps> = ({ scrollToSection }) => {
                 Education
               </button>
             </li>
+            <li>
+              <button
+                className="text-xs hover:cursor-pointer"
+                onClick={() => (
+                  scrollToSection("externals"), setIsExpanded(false)
+                )}
+              >
+                Externals
+              </button>
+            </li>
           </ul>
         </div>
       )}
