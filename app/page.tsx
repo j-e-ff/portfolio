@@ -503,7 +503,7 @@ export default function Home() {
         {/* Certifications Section */}
         <div
           id="certifications"
-          className="w-full flex flex-col items-center gap-20 min-h-screen  scroll-mb-12 pt-4"
+          className="w-full flex flex-col items-center gap-20 h-[calc(100vh-7rem)] scroll-mt-12 pt-4"
         >
           <p className="text-3xl font-bold">Certifications</p>
           {/* Google Certification */}
