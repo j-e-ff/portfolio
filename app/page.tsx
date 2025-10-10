@@ -18,6 +18,7 @@ const images = [
   "/running-man.svg",
   "/subaru.png",
   "/Naruto.svg",
+  "/NMIXX_logo.svg",
 ];
 
 export default function Home() {
@@ -44,7 +45,8 @@ export default function Home() {
     return (
       src.includes("LE_SSERAFIM.svg") ||
       src.includes("samsung.svg") ||
-      src.includes("apex-legends.svg")
+      src.includes("apex-legends.svg") ||
+      src.includes("NMIXX_logo.svg")
     );
   };
 
@@ -267,8 +269,12 @@ export default function Home() {
         <div id="about" className="">
           <div className="w-full min-h-screen flex flex-col gap-8 sm:flex-row justify-center items-center sm:gap-10 md:gap-30 relative overflow-hidden">
             <div className="text">
-              <p className="text-3xl font-bold w-full wrap-anywhere text-center">Software Developer</p>
-              <p className="text-2xl font-semibold w-full text-center">Front-End</p>
+              <p className="text-3xl font-bold w-full wrap-anywhere text-center">
+                Software Developer
+              </p>
+              <p className="text-2xl font-semibold w-full text-center">
+                Front-End
+              </p>
             </div>
             <Image
               className="z-10 md:w-80 lg:w-90"
@@ -497,7 +503,7 @@ export default function Home() {
         {/* Certifications Section */}
         <div
           id="certifications"
-          className="w-full flex flex-col items-center gap-20 min-h-screen justify-center scroll-mb-12 pt-4"
+          className="w-full flex flex-col items-center gap-20 min-h-screen  scroll-mb-12 pt-4"
         >
           <p className="text-3xl font-bold">Certifications</p>
           {/* Google Certification */}
@@ -572,7 +578,7 @@ export default function Home() {
         {/* Education Section */}
         <div
           id="education"
-          className="w-full flex flex-col items-center gap-20 h-[calc(100vh-7rem)] sm:h-200 scroll-mt-12"
+          className="w-full flex flex-col  items-center gap-20 h-[calc(100vh-7rem)] sm:h-200 scroll-mt-12"
         >
           <p className="text-3xl font-bold">Education</p>
           <Image
@@ -596,13 +602,12 @@ export default function Home() {
           </section>
         </div>
         {/* Contact */}
-        
       </main>
 
       <footer className="sm:hidden row-start-3 flex gap-[24px] flex-wrap items-center justify-center p-10">
         <a
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+          href="https://github.com/j-e-ff"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -623,7 +628,7 @@ export default function Home() {
         </a>
         <a
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+          href="https://linkedin.com/in/jeffrey-rodas-018665250"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -638,10 +643,15 @@ export default function Home() {
           />
         </a>
         <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+          className="flex items-center gap-2 hover:underline hover:underline-offset-4 hover:cursor-pointer"
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() =>
+            window.open(
+              `mailto:${"rodasjeffrey@gmail.com"}?subject=${""}&body=${""}`,
+              "_blank"
+            )
+          }
         >
           <Image
             className="z-10 md:w-80 lg:w-90"
@@ -652,7 +662,6 @@ export default function Home() {
             priority
             quality={100}
           />
-
         </a>
       </footer>
     </div>

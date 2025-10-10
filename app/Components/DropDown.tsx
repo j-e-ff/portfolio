@@ -28,53 +28,35 @@ const DropDown: React.FC<DropDownProps> = ({ scrollToSection }) => {
       {isExpanded && (
         <div className="bg-gray-300 dark:bg-white rounded-sm px-2 py-1">
           <ul>
-            <li>
-              <button
-                className="text-xs hover:cursor-pointer"
-                onClick={() => (scrollToSection("about"), setIsExpanded(false))}
-              >
-                Home
-              </button>
+            <li
+              className="text-xs hover:cursor-pointer"
+              onClick={() => (scrollToSection("about"), setIsExpanded(false))}
+            >
+              Home
             </li>
-            <li>
-              <button
-                className="text-xs hover:cursor-pointer"
-                onClick={() => (
-                  scrollToSection("projects"), setIsExpanded(false)
-                )}
-              >
-                Projects
-              </button>
+            <li
+              className="text-xs hover:cursor-pointer"
+              onClick={() => (
+                scrollToSection("projects"), setIsExpanded(false)
+              )}
+            >
+              Projects
             </li>
-            <li>
-              <button
-                className="text-xs hover:cursor-pointer"
-                onClick={() => (
-                  scrollToSection("certifications"), setIsExpanded(false)
-                )}
-              >
-                Certifications
-              </button>
+            <li
+              className="text-xs hover:cursor-pointer"
+              onClick={() => (
+                scrollToSection("certifications"), setIsExpanded(false)
+              )}
+            >
+              Certifications
             </li>
-            <li>
-              <button
-                className="text-xs hover:cursor-pointer"
-                onClick={() => (
-                  scrollToSection("education"), setIsExpanded(false)
-                )}
-              >
-                Education
-              </button>
-            </li>
-            <li>
-              <button
-                className="text-xs hover:cursor-pointer"
-                onClick={() => (
-                  scrollToSection("externals"), setIsExpanded(false)
-                )}
-              >
-                Externals
-              </button>
+            <li
+              className="text-xs hover:cursor-pointer"
+              onClick={() => (
+                scrollToSection("education"), setIsExpanded(false)
+              )}
+            >
+              Education
             </li>
           </ul>
         </div>
