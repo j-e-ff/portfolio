@@ -320,7 +320,7 @@ export default function Home() {
         {/* Projects Section */}
         <div
           id="projects"
-          className="w-full flex flex-col gap-20 min-h-screen scroll-mt-12"
+          className="w-full flex flex-col  min-h-screen scroll-mt-12 pb-15 sm:pb-none"
         >
           <div className="w-full flex flex-col justify-center items-center gap-6 ">
             <p className="text-2xl font-bold sticky">Projects</p>
@@ -503,7 +503,7 @@ export default function Home() {
         {/* Certifications Section */}
         <div
           id="certifications"
-          className="w-full flex flex-col items-center gap-20 h-[calc(100vh-7rem)] scroll-mt-12 pt-4"
+          className="w-full flex flex-col items-center gap-20 h-[calc(100vh-7rem)] scroll-mt-12 pt-4 "
         >
           <p className="text-3xl font-bold">Certifications</p>
           {/* Google Certification */}
@@ -578,7 +578,7 @@ export default function Home() {
         {/* Education Section */}
         <div
           id="education"
-          className="w-full flex flex-col  items-center gap-20 h-[calc(100vh-7rem)] sm:h-200 scroll-mt-12"
+          className="w-full flex flex-col  items-center gap-20 min-h-screen sm:h-200 scroll-mt-12"
         >
           <p className="text-3xl font-bold">Education</p>
           <Image
@@ -604,7 +604,7 @@ export default function Home() {
         {/* Contact */}
       </main>
 
-      <footer className="sm:hidden row-start-3 flex gap-[24px] flex-wrap items-center justify-center p-10">
+      <footer className="sm:hidden row-start-3 flex gap-[34px] flex-wrap items-center justify-center p-10">
         <a
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
           href="https://github.com/j-e-ff"
