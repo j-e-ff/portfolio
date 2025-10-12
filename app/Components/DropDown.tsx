@@ -15,8 +15,8 @@ const DropDown: React.FC<DropDownProps> = ({ scrollToSection }) => {
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
+          width="24"
+          height="24"
           fill=""
           className="bi bi-menu-button-wide"
           viewBox="0 0 16 16"
@@ -27,15 +27,15 @@ const DropDown: React.FC<DropDownProps> = ({ scrollToSection }) => {
       </button>
       {isExpanded && (
         <div className="bg-gray-300 dark:bg-white rounded-sm px-2 py-1">
-          <ul>
+          <ul className="items-center h-full w-full">
             <li
-              className="text-xs hover:cursor-pointer"
+              className="text-base hover:cursor-pointer justify-center items-center h-6 flex flex-row"
               onClick={() => (scrollToSection("about"), setIsExpanded(false))}
             >
               Home
             </li>
             <li
-              className="text-xs hover:cursor-pointer"
+              className="text-base hover:cursor-pointer justify-center items-center h-6 flex flex-row"
               onClick={() => (
                 scrollToSection("projects"), setIsExpanded(false)
               )}
@@ -43,7 +43,7 @@ const DropDown: React.FC<DropDownProps> = ({ scrollToSection }) => {
               Projects
             </li>
             <li
-              className="text-xs hover:cursor-pointer"
+              className="text-base hover:cursor-pointer justify-center items-center h-6 flex flex-row"
               onClick={() => (
                 scrollToSection("certifications"), setIsExpanded(false)
               )}
@@ -51,7 +51,7 @@ const DropDown: React.FC<DropDownProps> = ({ scrollToSection }) => {
               Certifications
             </li>
             <li
-              className="text-xs hover:cursor-pointer"
+              className="text-base hover:cursor-pointer justify-center items-center h-6 flex flex-row"
               onClick={() => (
                 scrollToSection("education"), setIsExpanded(false)
               )}
