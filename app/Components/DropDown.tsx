@@ -6,11 +6,12 @@ interface DropDownProps {
 
 const DropDown: React.FC<DropDownProps> = ({ scrollToSection }) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [active, setActive] = useState(false);
 
   return (
-    <div className="flex flex-col justify-end items-end gap-1">
+    <div className={`flex flex-col justify-end items-end gap-1 ${active ? "opacity-100" : "opacity-50"}`} >
       <button
-        onClick={() => setIsExpanded(!isExpanded)}
+        onClick={() => (setIsExpanded(!isExpanded), setActive(!active))}
         className="bg-gray-300 hover:bg-gray-200 text-white px-2 py-1 rounded-sm"
       >
         <svg
@@ -30,14 +31,18 @@ const DropDown: React.FC<DropDownProps> = ({ scrollToSection }) => {
           <ul className="items-center h-full w-full">
             <li
               className="text-base hover:cursor-pointer justify-center items-center h-6 flex flex-row"
-              onClick={() => (scrollToSection("about"), setIsExpanded(false))}
+              onClick={() => (
+                scrollToSection("about"), setIsExpanded(false), setActive(false)
+              )}
             >
               Home
             </li>
             <li
               className="text-base hover:cursor-pointer justify-center items-center h-6 flex flex-row"
               onClick={() => (
-                scrollToSection("projects"), setIsExpanded(false)
+                scrollToSection("projects"),
+                setIsExpanded(false),
+                setActive(false)
               )}
             >
               Projects
@@ -45,7 +50,9 @@ const DropDown: React.FC<DropDownProps> = ({ scrollToSection }) => {
             <li
               className="text-base hover:cursor-pointer justify-center items-center h-6 flex flex-row"
               onClick={() => (
-                scrollToSection("certifications"), setIsExpanded(false)
+                scrollToSection("certifications"),
+                setIsExpanded(false),
+                setActive(false)
               )}
             >
               Certifications
@@ -53,7 +60,9 @@ const DropDown: React.FC<DropDownProps> = ({ scrollToSection }) => {
             <li
               className="text-base hover:cursor-pointer justify-center items-center h-6 flex flex-row"
               onClick={() => (
-                scrollToSection("education"), setIsExpanded(false)
+                scrollToSection("education"),
+                setIsExpanded(false),
+                setActive(false)
               )}
             >
               Education

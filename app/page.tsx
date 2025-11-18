@@ -32,6 +32,33 @@ export default function Home() {
     images[5],
   ]);
 
+  const [activeSection, setActiveSection] = useState("");
+
+  useEffect(() => {
+    const sectionIds = [
+      "about",
+      "projects",
+      "certifications",
+      "education-title",
+    ];
+    const sections = sectionIds.map((id) => document.getElementById(id));
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { threshold: 0.6 } // section is active when 60% is visible
+    );
+
+    // observer seach section
+    sections.forEach((sec) => sec && observer.observe(sec));
+
+    return () => observer.disconnect();
+  }, []);
+
   // Preload images on component mount
   useEffect(() => {
     images.forEach((imageSrc) => {
@@ -54,10 +81,7 @@ export default function Home() {
     images[Math.floor(Math.random() * images.length)];
 
   useEffect(() => {
-    console.log("Setting up intersection observer...");
-
     const elements = document.querySelectorAll(".observe");
-    console.log("Found", elements.length, "elements to observe");
 
     if (!elements.length) {
       console.log("No elements with .observe class found!");
@@ -105,37 +129,34 @@ export default function Home() {
   }, []);
 
   const scrollToSection = (id: string) => {
-    const section = document.getElementById(id);
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
-    }
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <div className="font-sans grid grid-rows-1 items-center justify-center min-h-screen">
+    <div className="font-sans grid grid-rows-1 items-center justify-center min-h-screen text-white bg-black scroll-smooth">
       {/* Navbar at top of page */}
       <header className="hidden sm:flex sm:flex-row gap-4 backdrop-blur-3xl fixed top-0 justify-center z-50  h-10 w-full ">
         <button
-          className="brightness-50 hover:brightness-100"
+          className={`cursor-pointer hover:brightness-100 ${activeSection === "about" ?"brightness-100" : "brightness-50 " }`}
           onClick={() => scrollToSection("about")}
         >
           Home{" "}
         </button>
         <button
-          className="brightness-50 hover:brightness-100"
+          className={`cursor-pointer hover:brightness-100 ${activeSection === "projects" ?"brightness-100" : "brightness-50 " }`}
           onClick={() => scrollToSection("projects")}
         >
           Projects
         </button>
         <button
-          className="brightness-50 hover:brightness-100"
+          className={`cursor-pointer hover:brightness-100 ${activeSection === "certifications" ?"brightness-100" : "brightness-50 " }`}
           onClick={() => scrollToSection("certifications")}
         >
           Certifications
         </button>
         <button
-          className="brightness-50 hover:brightness-100"
-          onClick={() => scrollToSection("education")}
+          className={`cursor-pointer hover:brightness-100 ${activeSection === "education-title" ?"brightness-100" : "brightness-50 " }`}
+          onClick={() => scrollToSection("education-title")}
         >
           Education
         </button>
@@ -266,24 +287,35 @@ export default function Home() {
 
       <main className="flex flex-col gap-[32px] overflow-y-auto w-full md:pl-4 lg:pl-12 ">
         {/* About Me Section */}
-        <div id="about" className="">
+        <section id="about" className="about-me">
           <div className="w-full min-h-screen flex flex-col gap-8 sm:flex-row justify-center items-center sm:gap-10 md:gap-30 relative overflow-hidden">
-            <div className="text">
-              <p className="text-3xl font-bold w-full wrap-anywhere text-center">
-                Software Developer
+            <div className="text flex flex-col w-74 gap-2">
+              <p className="text-3xl font-bold w-full wrap-anywhere text-start">
+                Web Developer
               </p>
-              <p className="text-2xl font-semibold w-full text-center">
-                Front-End
+
+              <div className="location-text flex flex-row gap-4 pb-2">
+                <Image
+                  className="w-4"
+                  src="/geo-alt.svg"
+                  alt="location marker"
+                  width={100}
+                  height={100}
+                />
+                <p className="text-lg font-semibold">Lomita, California</p>
+              </div>
+              <p className="bio font-semibold">
+                Graduated with a degree in computer science, trying to get into
+                web development
               </p>
             </div>
             <Image
               className="z-10 md:w-80 lg:w-90"
-              src="/me.jpg"
+              src="/profile-pic.jpg"
               alt="Me"
               width={300}
               height={38}
               priority
-              quality={100}
             />
             {/* Falling images */}
             {imageStates.map((imageSrc, index) => (
@@ -315,16 +347,15 @@ export default function Home() {
               </div>
             ))}
           </div>
-        </div>
+        </section>
 
         {/* Projects Section */}
-        <div
+        <section
           id="projects"
-          className="w-full flex flex-col  min-h-screen scroll-mt-12 pb-15 sm:pb-none"
+          className="w-full flex flex-col min-h-screen scroll-mt-12 pb-15 sm:pb-none"
         >
           <div className="w-full flex flex-col justify-center items-center gap-6 ">
-            <p className="text-2xl font-bold sticky">Projects</p>
-            <p>Current projects deployed</p>
+            <p className="text-2xl font-bold sticky">Personal Projects</p>
           </div>
           {/* Project Cards*/}
           <div className="grid grid-cols-1 md:grid-cols-2 sm:gap-4 gap-y-12 sm:gap-y-6 w-full sm:h-full">
@@ -336,7 +367,7 @@ export default function Home() {
                 target="_blank"
               >
                 <div className="absolute inset-0 bg-black/80  sm:bg-transparent sm:hover:bg-black/80 text-center flex flex-col gap-10 rounded-xl items-center ">
-                  <p className="text-white opacity-100 sm:opacity-0 sm:group-hover:opacity-100 brightness-200 text-xl pt-8">
+                  <p className="font-bold text-white opacity-100 sm:opacity-0 sm:group-hover:opacity-100 brightness-200 text-xl pt-8">
                     Umedia
                   </p>
                   <div className="textbox flex flex-col text-center sm:w-100 md:w-80 lg:w-110">
@@ -409,11 +440,11 @@ export default function Home() {
               >
                 <div className="absolute inset-0 bg-black/80 sm:bg-transparent sm:hover:bg-black/80 text-center flex flex-col gap-15 p-6 rounded-xl">
                   <div className="gap-10 flex flex-col items-center">
-                    <p className="text-white opacity-100 sm:opacity-0 sm:group-hover:opacity-100 brightness-200 text-xl mt-4">
+                    <p className="font-bold text-white opacity-100 sm:opacity-0 sm:group-hover:opacity-100 brightness-200 text-xl mt-4">
                       CinemaSite
                     </p>
                     <div className="textbox flex flex-col text-center sm:w-100 md:w-80 lg:w-110">
-                      <p className="text-white opacity-100 sm:opacity-0 sm:group-hover:opacity-100 brightness-200 text-xs sm:text-base lg:text-lg">
+                      <p className=" text-white opacity-100 sm:opacity-0 sm:group-hover:opacity-100 brightness-200 text-xs sm:text-base lg:text-lg">
                         Movie database (and tv-shows) site where users can
                         search for content, allowing them to add to favorites
                         list or watch later list. Uses The Movie Database API
@@ -467,7 +498,7 @@ export default function Home() {
               >
                 <div className="absolute inset-0 bg-black/80 sm:bg-transparent sm:hover:bg-black/80 text-center flex flex-col gap-15 p-6 rounded-xl">
                   <div className="gap-10 flex flex-col items-center">
-                    <p className="text-white opacity-100 sm:opacity-0 sm:group-hover:opacity-100 brightness-200 text-xl mt-4">
+                    <p className="font-bold text-white opacity-100 sm:opacity-0 sm:group-hover:opacity-100 brightness-200 text-xl mt-4">
                       Weather App
                     </p>
                     <p className="text-white opacity-100 sm:opacity-0 sm:group-hover:opacity-100 brightness-200 text-xs sm:text-base lg:text-lg">
@@ -499,9 +530,9 @@ export default function Home() {
               </Link>
             </div>
           </div>
-        </div>
+        </section>
         {/* Certifications Section */}
-        <div
+        <section
           id="certifications"
           className="w-full flex flex-col items-center gap-20 h-[calc(100vh-7rem)] scroll-mt-12 pt-4 "
         >
@@ -574,13 +605,15 @@ export default function Home() {
               </section>
             </div>
           </div>
-        </div>
+        </section>
         {/* Education Section */}
-        <div
+        <section
           id="education"
-          className="w-full flex flex-col  items-center gap-20 min-h-screen sm:h-200 scroll-mt-12"
+          className="w-full flex flex-col items-center justify-center gap-20 min-h-screen sm:h-200"
         >
-          <p className="text-3xl font-bold">Education</p>
+          <p id="education-title" className="text-3xl font-bold">
+            Education
+          </p>
           <Image
             className=""
             src="/CPP_Horizontal_2C_Green_RGB-700px.png"
@@ -590,20 +623,31 @@ export default function Home() {
             quality={100}
             priority
           />
-          <section className="flex flex-row gap-4">
-            <Image
-              src="/graduation.svg"
-              alt="falling image"
-              width={20}
-              height={38}
-              className=""
-            />
-            <p>Aug 2021 - May 2025</p>
+          <section className="flex flex-col gap-4">
+            <p className="text-xl">
+              California State Polytechnic University Pomona
+            </p>
+            <div className="flex flex-row gap-4">
+              <Image
+                src="/graduation.svg"
+                alt="falling image"
+                width={30}
+                height={38}
+                className=""
+              />
+              <p className="font-semibold text-lg">
+                Bachelor of Science, Computer Science
+              </p>
+            </div>
+            <p className="font-semibold text-sm text-center">
+              Aug 2021 - May 2025
+            </p>
           </section>
-        </div>
+        </section>
         {/* Contact */}
       </main>
 
+      {/* only for mobile, will stay hidden on larger screens */}
       <footer className="sm:hidden row-start-3 flex gap-[34px] flex-wrap items-center justify-center p-10">
         <a
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
