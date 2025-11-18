@@ -137,25 +137,37 @@ export default function Home() {
       {/* Navbar at top of page */}
       <header className="hidden sm:flex sm:flex-row gap-4 backdrop-blur-3xl fixed top-0 justify-center z-50  h-10 w-full ">
         <button
-          className={`cursor-pointer hover:brightness-100 ${activeSection === "about" ?"brightness-100" : "brightness-50 " }`}
+          className={`cursor-pointer hover:brightness-100 ${
+            activeSection === "about" ? "brightness-100" : "brightness-50 "
+          }`}
           onClick={() => scrollToSection("about")}
         >
           Home{" "}
         </button>
         <button
-          className={`cursor-pointer hover:brightness-100 ${activeSection === "projects" ?"brightness-100" : "brightness-50 " }`}
+          className={`cursor-pointer hover:brightness-100 ${
+            activeSection === "projects" ? "brightness-100" : "brightness-50 "
+          }`}
           onClick={() => scrollToSection("projects")}
         >
           Projects
         </button>
         <button
-          className={`cursor-pointer hover:brightness-100 ${activeSection === "certifications" ?"brightness-100" : "brightness-50 " }`}
+          className={`cursor-pointer hover:brightness-100 ${
+            activeSection === "certifications"
+              ? "brightness-100"
+              : "brightness-50 "
+          }`}
           onClick={() => scrollToSection("certifications")}
         >
           Certifications
         </button>
         <button
-          className={`cursor-pointer hover:brightness-100 ${activeSection === "education-title" ?"brightness-100" : "brightness-50 " }`}
+          className={`cursor-pointer hover:brightness-100 ${
+            activeSection === "education-title"
+              ? "brightness-100"
+              : "brightness-50 "
+          }`}
           onClick={() => scrollToSection("education-title")}
         >
           Education
@@ -195,7 +207,7 @@ export default function Home() {
         {/* LINKEDIN */}
         <div className="group">
           <Link
-            href="https://linkedin.com/in/jeffrey-rodas-018665250"
+            href="https://www.linkedin.com/in/jeffrey-rodas-hernandez-018665250"
             rel="noopener noreferer"
             target="_blank"
           >
@@ -302,7 +314,9 @@ export default function Home() {
                   width={100}
                   height={100}
                 />
-                <p className="md:text-lg font-semibold text-xs ">Lomita, California</p>
+                <p className="md:text-lg font-semibold text-xs ">
+                  Lomita, California
+                </p>
               </div>
               <p className="bio md:text-lg font-semibold sm:text-xs">
                 Graduated with a degree in computer science, trying to get into
@@ -672,7 +686,7 @@ export default function Home() {
         </a>
         <a
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://linkedin.com/in/jeffrey-rodas-018665250"
+          href="https://www.linkedin.com/in/jeffrey-rodas-hernandez-018665250"
           target="_blank"
           rel="noopener noreferrer"
         >
