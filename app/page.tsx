@@ -289,8 +289,8 @@ export default function Home() {
         {/* About Me Section */}
         <section id="about" className="about-me">
           <div className="w-full min-h-screen flex flex-col gap-8 sm:flex-row justify-center items-center sm:gap-10 md:gap-30 relative overflow-hidden">
-            <div className="text flex flex-col w-74 gap-2">
-              <p className="text-3xl font-bold w-full wrap-anywhere text-start">
+            <div className="text flex flex-col md:w-74 w-50 gap-2">
+              <p className="md:text-3xl font-bold w-full wrap-anywhere text-start text-lg">
                 Web Developer
               </p>
 
@@ -302,9 +302,9 @@ export default function Home() {
                   width={100}
                   height={100}
                 />
-                <p className="text-lg font-semibold">Lomita, California</p>
+                <p className="md:text-lg font-semibold text-xs ">Lomita, California</p>
               </div>
-              <p className="bio font-semibold">
+              <p className="bio md:text-lg font-semibold sm:text-xs">
                 Graduated with a degree in computer science, trying to get into
                 web development
               </p>
