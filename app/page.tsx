@@ -289,7 +289,7 @@ export default function Home() {
         {/* About Me Section */}
         <section id="about" className="about-me">
           <div className="w-full min-h-screen flex flex-col gap-8 sm:flex-row justify-center items-center sm:gap-10 md:gap-30 relative overflow-hidden">
-            <div className="text flex flex-col md:w-74 w-50 gap-2">
+            <div className="text flex flex-col md:w-74 sm:w-50 w-70 gap-2">
               <p className="md:text-3xl font-bold w-full wrap-anywhere text-start text-lg">
                 Web Developer
               </p>
