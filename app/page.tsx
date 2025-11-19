@@ -299,7 +299,7 @@ export default function Home() {
 
       <main className="flex flex-col gap-[32px] overflow-y-auto w-full md:pl-4 lg:pl-12 ">
         {/* About Me Section */}
-        <section id="about" className="about-me">
+        <section id="about" className="about-me min-h-screen">
           <div className="w-full min-h-screen flex flex-col gap-8 sm:flex-row justify-center items-center sm:gap-10 md:gap-30 relative overflow-hidden">
             <div className="text flex flex-col md:w-74 sm:w-50 w-70 gap-2">
               <p className="md:text-3xl font-bold w-full wrap-anywhere text-start text-lg">
@@ -366,7 +366,7 @@ export default function Home() {
         {/* Projects Section */}
         <section
           id="projects"
-          className="w-full flex flex-col min-h-screen scroll-mt-12 pb-15 sm:pb-none"
+          className="w-full flex flex-col min-h-screen scroll-mt-12 pb-15 sm:pb-none justify-center"
         >
           <div className="w-full flex flex-col justify-center items-center gap-6 ">
             <p className="text-2xl font-bold sticky">Personal Projects</p>
@@ -548,18 +548,18 @@ export default function Home() {
         {/* Certifications Section */}
         <section
           id="certifications"
-          className="w-full flex flex-col items-center gap-20 h-[calc(100vh-7rem)] scroll-mt-12 pt-4 "
+          className="w-full flex flex-col items-center justify-center gap-20 min-h-screen scroll-mt-12 pt-4 "
         >
           <p className="text-3xl font-bold">Certifications</p>
           {/* Google Certification */}
-          <div className="flex flex-row items-center gap-10 lg:gap-15 sm:w-135">
+          <div className="flex flex-row items-center gap-10 lg:gap-28 sm:w-135">
             <Link
               href="https://www.credly.com/badges/1142c4a8-7d5c-4caf-a68d-22de92fafaf8/public_url"
               rel="noopener noreferer"
               target="_blank"
             >
               <Image
-                className=""
+                className="lg:w-55"
                 src="/google-cloud-computing-foundations-certificate.png"
                 alt="google badge"
                 width={150}
@@ -568,7 +568,7 @@ export default function Home() {
               />
             </Link>
             {/* text section for badge */}
-            <section className="flex flex-col">
+            <section className="flex flex-col ">
               <p className="text-lg sm:text-xl font-bold">
                 Google Cloud Computing Foundations
               </p>
@@ -581,13 +581,13 @@ export default function Home() {
           <div className="flex flex-row justify-start items-start sm:w-135 sm:pr-3 w-full pl-2">
             <div className="flex flex-row gap-10 lg:gap-15 ">
               <Image
-                className="bg-white"
+                className="bg-white p-2 xl:w-50"
                 src="/project-management-institute.svg"
                 alt="google badge"
                 width={150}
                 height={38}
                 priority
-              ></Image>
+              />
               <section>
                 <p className="text-lg sm:text-xl font-bold">
                   The Basics of Scrum
@@ -602,13 +602,13 @@ export default function Home() {
           <div className="flex flex-row justify-start sm:w-135  sm:pr-3 w-full pl-2">
             <div className="flex flex-row gap-10 lg:gap-15 ">
               <Image
-                className="bg-white"
+                className="bg-white p-2 xl:w-50"
                 src="/project-management-institute.svg"
                 alt="google badge"
                 width={150}
                 height={38}
                 priority
-              ></Image>
+              />
               <section>
                 <p className="text-lg sm:text-xl font-bold">
                   Basics of Disciplined Agile
@@ -637,8 +637,8 @@ export default function Home() {
             quality={100}
             priority
           />
-          <section className="flex flex-col gap-4">
-            <p className="text-xl">
+          <section className="flex flex-col gap-4 items-center">
+            <p className="text-2xl font-semibold">
               California State Polytechnic University Pomona
             </p>
             <div className="flex flex-row gap-4">
@@ -649,11 +649,11 @@ export default function Home() {
                 height={38}
                 className=""
               />
-              <p className="font-semibold text-lg">
+              <p className="font-semibold text-xl ">
                 Bachelor of Science, Computer Science
               </p>
             </div>
-            <p className="font-semibold text-sm text-center">
+            <p className="font-semibold text-base text-center">
               Aug 2021 - May 2025
             </p>
           </section>
