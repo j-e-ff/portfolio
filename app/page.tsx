@@ -446,7 +446,7 @@ export default function Home() {
               </Link>
             </div>
             {/* cinemasite */}
-            <div className="observe group relative bg-[url(/cinemasite.png)] bg-cover mx-auto flex w-100 h-80 sm:w-115 sm:h-105 md:w-88 md:h-80 lg:w-120 lg:h-100 xl:w-120 sm:gap-x-4 rounded-xl">
+            <div className="observe group relative bg-[url(/CinemaV2-home.jpg)] bg-cover mx-auto flex w-100 h-80 sm:w-115 sm:h-105 md:w-88 md:h-80 lg:w-120 lg:h-100 xl:w-120 sm:gap-x-4 rounded-xl">
               <Link
                 href="https://cinemasite.rodasjeffrey.com"
                 rel="noopener noreferer"
@@ -466,39 +466,49 @@ export default function Home() {
                       </p>
                     </div>
                     {/* icons */}
-                    <div className="opacity-100 sm:opacity-0 sm:group-hover:opacity-100 flex flex-row gap-3 justify-center">
-                      <Image
-                        src="/react-2.svg"
-                        alt="react logo"
-                        width={25}
-                        height={38}
-                        priority
-                      />
-                      <Image
-                        className=""
-                        src="/vitejs.svg"
-                        alt="vite logo"
-                        width={25}
-                        height={38}
-                        priority
-                      />
-                      <Image
-                        className=""
-                        src="/firebase-1.svg"
-                        alt="firebase logo"
-                        width={20}
-                        height={38}
-                        priority
-                      />
-                      <Image
-                        className=""
-                        src="/javascript-1.svg"
-                        alt="javascript logo"
-                        width={23}
-                        height={38}
-                        priority
-                      />
-                    </div>
+                    <div className="opacity-100 sm:opacity-0 sm:group-hover:opacity-100 flex flex-row gap-4 justify-center">
+                    <Image
+                      className=""
+                      src="/react-2.svg"
+                      alt="react logo"
+                      width={25}
+                      height={38}
+                      priority
+                    />
+                    <Image
+                      className="invert"
+                      src="/next-js.svg"
+                      alt="Next.js logo"
+                      width={22}
+                      height={38}
+                      priority
+                    />
+                    <Image
+                      className=""
+                      src="/tailwind-css-2.svg"
+                      alt="tailwind logo"
+                      width={25}
+                      height={38}
+                      priority
+                    />
+                    <Image
+                      className=""
+                      src="/typescript.svg"
+                      alt="typescript logo"
+                      width={23}
+                      height={38}
+                      priority
+                    />
+                    <Image
+                      className=""
+                      src="/firebase-1.svg"
+                      alt="Firebase logo"
+                      width={20}
+                      height={38}
+                      priority
+                    />
+                    
+                  </div>
                   </div>
                 </div>
               </Link>
