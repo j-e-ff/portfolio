@@ -319,8 +319,7 @@ export default function Home() {
                 </p>
               </div>
               <p className="bio md:text-lg font-semibold sm:text-xs">
-                Graduated with a degree in computer science, trying to get into
-                web development
+                Recemt Computer Science graduate seeking to launch my career in Front-End Web Development
               </p>
             </div>
             <Image
