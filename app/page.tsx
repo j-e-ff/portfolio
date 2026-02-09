@@ -319,7 +319,7 @@ export default function Home() {
                 </p>
               </div>
               <p className="bio md:text-lg font-semibold sm:text-xs">
-                Recemt Computer Science graduate seeking to launch my career in Front-End Web Development
+                Recent Computer Science graduate seeking to launch my career in Front-End Web Development
               </p>
             </div>
             <Image
