@@ -118,7 +118,7 @@ export default function Home() {
 
   // Project Card tilt
   useGSAP(() => {
-    const cards = gsap.utils.toArray<HTMLElement>(
+    const cards = gsap.utils.toArray<HTMLDivElement>(
       projectRef.current!.querySelectorAll(".card-tilt"),
     );
 
@@ -176,19 +176,16 @@ export default function Home() {
   };
 
   const scrollToSection = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    const offset = window.innerHeight * 0.1 + 15;
+    ScrollSmoother.get()?.scrollTo(`#${id}`, true, `top ${offset}px`);
   };
 
   return (
     <div id="smooth-wrapper">
-      <div
-        id="smooth-content"
-        className="font-sans grid grid-rows-1 items-center justify-center min-h-screen text-white bg-black"
-      >
-        {/* Navbar at top of page */}
-        <header className="hidden sm:flex sm:flex-row gap-4 backdrop-blur-3xl fixed top-0 justify-center z-50  h-10 w-full ">
+       {/* Navbar at top of page */}
+        <nav className="hidden sm:flex sm:flex-row gap-4 backdrop-blur-3xl absolute bottom-10 left-1/2 -translate-x-1/2 justify-center z-30 p-2 rounded-full">
           <button
-            className={`cursor-pointer hover:brightness-100 ${
+            className={`cursor-pointer hover:brightness-100 text-lg ${
               activeSection === "about" ? "brightness-100" : "brightness-50 "
             }`}
             onClick={() => scrollToSection("about")}
@@ -196,7 +193,7 @@ export default function Home() {
             Home{" "}
           </button>
           <button
-            className={`cursor-pointer hover:brightness-100 ${
+            className={`cursor-pointer hover:brightness-100 text-lg ${
               activeSection === "projects" ? "brightness-100" : "brightness-50 "
             }`}
             onClick={() => scrollToSection("projects")}
@@ -204,7 +201,7 @@ export default function Home() {
             Projects
           </button>
           <button
-            className={`cursor-pointer hover:brightness-100 ${
+            className={`cursor-pointer hover:brightness-100 text-lg ${
               activeSection === "certifications"
                 ? "brightness-100"
                 : "brightness-50 "
@@ -214,7 +211,7 @@ export default function Home() {
             Certifications
           </button>
           <button
-            className={`cursor-pointer hover:brightness-100 ${
+            className={`cursor-pointer hover:brightness-100 text-lg ${
               activeSection === "education-title"
                 ? "brightness-100"
                 : "brightness-50 "
@@ -223,12 +220,16 @@ export default function Home() {
           >
             Education
           </button>
-        </header>
-        <header className="sm:hidden flex w-full fixed top-6 right-4 justify-end z-50">
-          <DropDown scrollToSection={scrollToSection}></DropDown>
+        </nav>
+      <div
+        id="smooth-content"
+        className="font-sans grid grid-rows-1 items-center justify-center min-h-screen text-foreground bg-background"
+      >
+        <header className="sm:hidden flex w-full fixed top-6 right-4 justify-end z-20">
+          <DropDown scrollToSection={scrollToSection} />
         </header>
         {/* Links to GitHub, LinkedIn, email; Displayed on side of page (bottom left)*/}
-        <nav className="opacity-0 sm:opacity-100 flex flex-col fixed bottom-12 left-8 sm:left-2 md:left-4 lg:left-6 xl:left-8 gap-4">
+        <section className="opacity-0 sm:opacity-100 flex flex-col fixed bottom-12 left-8 sm:left-2 md:left-4 lg:left-6 xl:left-8 gap-4">
           {/* GITHUB */}
           <div>
             <Link
@@ -240,7 +241,7 @@ export default function Home() {
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
-                className="w-[30px] h-[30px] stroke-black dark:stroke-white hover:stroke-[#5FED83] transition-colors duration-300 cursor-pointer"
+                className="w-[30px] h-[30px] stroke-(--foreground) hover:stroke-[#5FED83] transition-colors duration-300 cursor-pointer"
               >
                 <path
                   fillRule="evenodd"
@@ -263,7 +264,7 @@ export default function Home() {
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
-                className="w-[30px] h-[30px] stroke-black dark:stroke-white group-hover:stroke-[#0077B5] transition-colors duration-300 cursor-pointer"
+                className="w-[30px] h-[30px] stroke-(--foreground) group-hover:stroke-[#0077B5] transition-colors duration-300 cursor-pointer"
               >
                 <path
                   d="M18 22V15C18 13.8954 17.1046 13 16 13C14.8954 13 14 13.8954 14 15V22H10"
@@ -336,12 +337,12 @@ export default function Home() {
                   strokeWidth="12"
                   strokeLinejoin="round"
                   d="M22 57.265V142c0 5.523 4.477 10 10 10h24V95.056l40 30.278 40-30.278V152h24c5.523 0 10-4.477 10-10V57.265c0-13.233-15.15-20.746-25.684-12.736L96 81.265 47.684 44.53C37.15 36.519 22 44.032 22 57.265Z"
-                  className="transition-all duration-500 group-hover:stroke-[url(#gmailGradient)] dark:stroke-white"
+                  className="transition-all duration-500 group-hover:stroke-[url(#gmailGradient)] stroke-(--foreground)"
                 />
               </svg>
             </div>
           </div>
-        </nav>
+        </section>
         <main className="flex flex-col gap-[32px] overflow-y-auto w-full md:px-12 lg:px-15 ">
           {/* About Me Section */}
           <section id="about" className="about-me h-full ">
@@ -349,14 +350,14 @@ export default function Home() {
               ref={fallingImagesRef}
               className=" w-full min-h-screen flex flex-col gap-8 sm:flex-row justify-center items-center sm:gap-10 md:gap-30 relative overflow-hidden"
             >
-              <div className="z-10 text flex flex-col md:w-74 sm:w-50 w-70 gap-2">
+              <div className="z-20 text flex flex-col md:w-74 sm:w-50 w-70 gap-2">
                 <p className="md:text-3xl font-bold w-full wrap-anywhere text-start text-lg">
                   Web Developer
                 </p>
                 <div className="location-text flex flex-row gap-4 pb-2 items-center">
                   {/* map pin */}
                   <svg
-                    className="text-white"
+                    className="text-(--foreground)"
                     xmlns="http://www.w3.org/2000/svg"
                     width="20"
                     height="20"
@@ -379,19 +380,21 @@ export default function Home() {
                 </p>
               </div>
               {/* Photo */}
-              <Image
-                className="card-tilt z-10 md:w-80 lg:w-90 rounded-3xl "
-                src="/profile-pic.jpg"
-                alt="Me"
-                width={300}
-                height={38}
-                priority
-              />
+              <div className="card-tilt z-20">
+                <Image
+                  className=" md:w-80 lg:w-90 rounded-3xl "
+                  src="/profile-pic.jpg"
+                  alt="Me"
+                  width={300}
+                  height={38}
+                  priority
+                />
+              </div>
               {/* Falling images */}
               {images.map((imageSrc, index) => (
                 <div
                   key={index}
-                  className={`falling-image absolute top-0 z-0  ${
+                  className={`falling-image absolute top-0 z-10  ${
                     isInverted(imageSrc) ? "dark:invert" : ""
                   }`}
                 >

@@ -11,7 +11,7 @@ const DropDown: React.FC<DropDownProps> = ({ scrollToSection }) => {
 
   return (
     <div
-      className={`flex flex-col justify-end items-end gap-1 text-black ${
+      className={`flex flex-col justify-end items-end gap-1 text-(--foreground)/85 z-30 ${
         active ? "opacity-100" : "opacity-100"
       }`}
     >
@@ -22,10 +22,10 @@ const DropDown: React.FC<DropDownProps> = ({ scrollToSection }) => {
         <Image src="dropdown-arrow.svg" alt="dropdown" width={20} height={20} />
       </button>
       {isExpanded && (
-        <div className="bg-white/70 rounded-sm px-2 py-1">
-          <ul className="items-center h-full w-full">
+        <div className="bg-(--card) text-(--foreground)  rounded-sm px-2 py-1">
+          <ul className="items-start h-full w-full">
             <li
-              className="text-base hover:cursor-pointer justify-center items-center h-6 flex flex-row"
+              className="text-base  hover:cursor-pointer justify-center items-center h-6 flex flex-row"
               onClick={() => (
                 scrollToSection("about"), setIsExpanded(false), setActive(false)
               )}
