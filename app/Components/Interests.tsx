@@ -54,7 +54,7 @@ const Interests = () => {
 
   return (
     <section id="interests" className="flex flex-col items-center">
-      <p className="text-3xl font-bold">Interests</p>
+      <p className="text-3xl font-bold ">Interests</p>
       <div className="min-h-150 max-w-300 grid grid-cols-6 gap-5 p-2 sm:p-12  ">
         {/* Photos display */}
         <div className="bg-neutral-800 text-center rounded-2xl col-span-4 max-h-120 relative">
@@ -102,7 +102,7 @@ const Interests = () => {
           <Suggestions />
         </div>
         {/* Badminton Section */}
-        <div className="text-start col-span-2 max-h-65 bg-neutral-800 rounded-2xl p-4 gap-8 flex flex-col overflow-scroll wrap-anywhere">
+        <div className="text-start text-white col-span-2 max-h-65 bg-neutral-800 rounded-2xl p-4 gap-8 flex flex-col overflow-scroll wrap-anywhere">
           <p className="text-2xl font-bold pt-2">Badminton</p>
           <p className="text-base font-semibold ">
             I developed an interest in badminton during my college years.
@@ -117,7 +117,7 @@ const Interests = () => {
           </div>
         </div>
         {/* Kdrama Section */}
-        <div className="text-start col-span-4 h-65 pt-4  bg-neutral-800 rounded-2xl overflow-hidden">
+        <div className="text-start text-white col-span-4 h-65 pt-4  bg-neutral-800 rounded-2xl overflow-hidden">
           {/* Title */}
           <p className="text-2xl font-bold sm:pb-4 px-4 ">K-Drama</p>
           <div className="flex flex-col sm:flex-row w-full h-50 items-center">
