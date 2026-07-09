@@ -1,0 +1,32 @@
+[
+  {
+    "title": "The Good Bad Mother",
+    "backdrop": "/good-bad-mother.jpg",
+    "genre": ["comedy", "life", "drama", "family"],
+    "overview": "A tragic accident leaves an ambitious prosecutor with the mind of a child – forcing him and his mother to embark on a journey to heal their relationship."
+  },
+  {
+    "title": "It's Okay to Not Be Okay",
+    "backdrop": "/its-ok.jpg",
+    "genre": ["psychological", "romance", "comedy", "drama"],
+    "overview": "Desperate to escape from his emotional baggage and the heavy responsibility he’s had all his life, a psychiatric ward worker begins to heal with help from the unexpected – a woman who writes fairy tales but doesn’t believe in them."
+  },
+  {
+    "title": "Boyhood",
+    "backdrop": "/boyhood.jpg",
+    "genre": ["action", "thriller", "comedy", "youth"],
+    "overview": "Jang Byeong-tae is a small and weak boy living in Onyang in South Chungcheong Province. He's at the bottom of the school's social ladder and when he transfers to the neighboring Buyeo Agricultural High School, he faces an unexpected incident that becomes a turning point in his life."
+  },
+  {
+    "title": "Weak Hero",
+    "backdrop": "/weak-hero.jpg",
+    "genre": ["action", "youth", "drama"],
+    "overview": "With the aid of unexpected friends, a gifted but introverted student confronts bullies and violent foes — unaware of how dangerous his world will become."
+  },
+  {
+    "title": "Twinkling Watermelon",
+    "backdrop": "/twinkling-watermelon.jpg",
+    "genre": ["romance", "youth", "drama", "fantasy"],
+    "overview": "A CODA (child of deaf adult) student born with a gift for music crash lands at an unfamiliar place after time traveling through a suspicious music shop. There, he forms the band Watermelon Sugar with other mysterious youths."
+  }
+]
